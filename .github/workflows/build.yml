@@ -119,7 +119,6 @@ jobs:
           __1
           CC=/usr/bin/clang-19
           CFLAGS=$CFLAGS
-          PKG_CONFIG_SYSROOT_DIR=/sysroot/usr/lib/pkgconfig
           LCMS2_LIB_DIR=/sysroot/usr/lib/aarch64-linux-gnu
           " > $GITHUB_ENV
 
