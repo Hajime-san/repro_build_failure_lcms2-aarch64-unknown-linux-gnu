@@ -78,6 +78,8 @@ jobs:
 
           echo "Done."
 
+          sudo cp -r /usr/lib/aarch64-linux-gnu/liblcms2* /sysroot/usr/lib/aarch64-linux-gnu/
+
           # Configure the build environment. Both Rust and Clang will produce
           # llvm bitcode only, so we can use lld's incremental LTO support.
 
@@ -122,6 +124,8 @@ jobs:
           PKG_CONFIG_SYSROOT_DIR=/sysroot/usr/lib/aarch64-linux-gnu/pkgconfig
           LCMS2_INCLUDE_DIR=/usr/lib/aarch64-linux-gnu
           " > $GITHUB_ENV
+
+          ls /usr/lib/aarch64-linux-gnu
 
       - name: Build
         run: cargo build --release --locked --all-targets --verbose
