@@ -120,8 +120,9 @@ jobs:
           CC=/usr/bin/clang-19
           CFLAGS=$CFLAGS
           PKG_CONFIG_SYSROOT_DIR=/sysroot/usr/lib/pkgconfig
-          LCMS2_LIB_DIR=/sysroot/usr/lib
           " > $GITHUB_ENV
+
+          sudo find /sysroot -name "liblcms2.so*"
 
       - name: Build
         run: cargo build --release --verbose --target aarch64-unknown-linux-gnu
