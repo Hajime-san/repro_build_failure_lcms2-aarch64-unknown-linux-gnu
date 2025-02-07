@@ -121,12 +121,6 @@ jobs:
           CFLAGS=$CFLAGS
           " > $GITHUB_ENV
 
-          target_triple=$(clang -dumpmachine)
-          echo "$target_triple"
-
-          target_triple=$(llvm-config --host-target)
-          echo "$target_triple"
-
       - name: Build with PKG_CONFIG_LIBDIR environment variable
         run: cargo build --release --locked --all-targets --verbose
         env:
