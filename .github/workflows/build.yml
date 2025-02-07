@@ -121,9 +121,11 @@ jobs:
           __1
           CC=/usr/bin/clang-19
           CFLAGS=$CFLAGS
+          PKG_CONFIG_SYSROOT_DIR=/sysroot/usr/lib/aarch64-linux-gnu/pkgconfig
           " > $GITHUB_ENV
 
-          ls /sysroot/usr/lib/aarch64-linux-gnu
+          echo $LD_LIBRARY_PATH
+          echo $LIBRARY_PATH
 
       - name: Build
         run: cargo build --release --verbose --target aarch64-unknown-linux-gnu
