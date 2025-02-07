@@ -118,7 +118,7 @@ jobs:
           __1
           CC=/usr/bin/clang-19
           CFLAGS=$CFLAGS
-          LDFLAGS="-lc -lgcc"
+          LDFLAGS="-L/sysroot/lib -L/sysroot/usr/lib -lc -lgcc"
           " > $GITHUB_ENV
 
       - name: Build
