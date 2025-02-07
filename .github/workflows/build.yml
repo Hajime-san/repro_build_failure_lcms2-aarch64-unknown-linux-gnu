@@ -78,6 +78,8 @@ jobs:
 
           echo "Done."
 
+          sudo cp -r /usr/lib/aarch64-linux-gnu/liblcms2* /sysroot/usr/lib/aarch64-linux-gnu/
+
           # Configure the build environment. Both Rust and Clang will produce
           # llvm bitcode only, so we can use lld's incremental LTO support.
 
@@ -120,7 +122,6 @@ jobs:
           CC=/usr/bin/clang-19
           CFLAGS=$CFLAGS
           PKG_CONFIG_SYSROOT_DIR=/sysroot/usr/lib/aarch64-linux-gnu/pkgconfig
-          LCMS2_LIB_DIR=/usr/lib/aarch64-linux-gnu
           " > $GITHUB_ENV
 
       - name: Build
