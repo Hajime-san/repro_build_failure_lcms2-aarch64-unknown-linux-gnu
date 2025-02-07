@@ -118,9 +118,8 @@ jobs:
           __1
           CC=/usr/bin/clang-19
           CFLAGS=$CFLAGS
+          PKG_CONFIG_SYSROOT_DIR=/sysroot/sysroot/usr/lib/pkgconfig
           " > $GITHUB_ENV
-
-          ls -l /sysroot/usr/lib/pkgconfig
 
       - name: Build
         run: cargo build --release --verbose --target aarch64-unknown-linux-gnu
