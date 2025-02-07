@@ -59,6 +59,7 @@ jobs:
             gpg --dearmor                                 |
           sudo dd of=/etc/apt/trusted.gpg.d/llvm-snapshot.gpg
           sudo apt-get update
+          sudo apt-get install liblcms2-dev
           # this was unreliable sometimes, so try again if it fails
           sudo apt-get install --no-install-recommends clang-19 lld-19 clang-tools-19 clang-format-19 clang-tidy-19 || echo 'Failed. Trying again.' && sudo apt-get clean && sudo apt-get update && sudo apt-get install --no-install-recommends clang-19 lld-19 clang-tools-19 clang-format-19 clang-tidy-19
 
