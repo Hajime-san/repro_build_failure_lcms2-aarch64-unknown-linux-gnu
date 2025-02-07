@@ -123,7 +123,7 @@ jobs:
           LCMS2_INCLUDE_DIR=/usr/lib/aarch64-linux-gnu
           " > $GITHUB_ENV
 
-          ls /usr/lib/aarch64-linux-gnu
+          pkg-config --cflags --libs lcms2
 
       - name: Build
         run: cargo build --release --locked --all-targets --verbose
