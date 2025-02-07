@@ -122,5 +122,7 @@ jobs:
           PKG_CONFIG_SYSROOT_DIR=/sysroot/usr/lib/pkgconfig
           " > $GITHUB_ENV
 
+          find /sysroot -name "liblcms2.so*"
+
       - name: Build
         run: cargo build --release --verbose --target aarch64-unknown-linux-gnu
