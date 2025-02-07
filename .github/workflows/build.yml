@@ -85,9 +85,6 @@ jobs:
           cat /sysroot/.env
           . /sysroot/.env
 
-          # Set LDFLAGS to link against the standard C library
-          export LDFLAGS="-lc"
-
           # Important notes:
           #   1. -ldl seems to be required to avoid a failure in FFI tests. This flag seems
           #      to be in the Rust default flags in the smoketest, so uncertain why we need
@@ -121,6 +118,7 @@ jobs:
           __1
           CC=/usr/bin/clang-19
           CFLAGS=$CFLAGS
+          LDFLAGS="-lc -lgcc"
           " > $GITHUB_ENV
 
       - name: Build
