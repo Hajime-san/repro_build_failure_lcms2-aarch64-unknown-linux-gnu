@@ -60,8 +60,12 @@ jobs:
           sudo dd of=/etc/apt/trusted.gpg.d/llvm-snapshot.gpg
           sudo apt-get update
 
+          sudo apt-get install -y liblcms2-dev:aarch64-linux-gnu
+          cp -r /usr/lib/aarch64-linux-gnu/liblcms2* /sysroot/usr/lib/aarch64-linux-gnu/
+          cp -r /usr/include/lcms2.h /sysroot/usr/include/
+
           # this was unreliable sometimes, so try again if it fails
-          sudo apt-get install --no-install-recommends liblcms2-dev clang-19 lld-19 clang-tools-19 clang-format-19 clang-tidy-19 || echo 'Failed. Trying again.' && sudo apt-get clean && sudo apt-get update && sudo apt-get install --no-install-recommends clang-19 lld-19 clang-tools-19 clang-format-19 clang-tidy-19
+          sudo apt-get install --no-install-recommends clang-19 lld-19 clang-tools-19 clang-format-19 clang-tidy-19 || echo 'Failed. Trying again.' && sudo apt-get clean && sudo apt-get update && sudo apt-get install --no-install-recommends clang-19 lld-19 clang-tools-19 clang-format-19 clang-tidy-19
 
           # Fix alternatives
           (yes '' | sudo update-alternatives --force --all) > /dev/null 2> /dev/null || true
