@@ -123,3 +123,5 @@ jobs:
 
       - name: Build
         run: cargo build --release --locked --all-targets --verbose
+        env:
+          PKG_CONFIG_LIBDIR: /sysroot/usr/lib/aarch64-linux-gnu/pkgconfig
