@@ -73,7 +73,6 @@ jobs:
           sudo mount --rbind /dev /sysroot/dev
           sudo mount --rbind /sys /sysroot/sys
           sudo mount --rbind /home /sysroot/home
-          sudo mount --rbind /usr/lib /sysroot/usr/lib
           sudo mount -t proc /proc /sysroot/proc
           cd
 
@@ -121,6 +120,7 @@ jobs:
           CC=/usr/bin/clang-19
           CFLAGS=$CFLAGS
           PKG_CONFIG_SYSROOT_DIR=/sysroot/usr/lib/aarch64-linux-gnu/pkgconfig
+          LCMS2_LIB_DIR=/usr/lib/aarch64-linux-gnu
           " > $GITHUB_ENV
 
       - name: Build
