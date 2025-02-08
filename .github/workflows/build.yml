@@ -22,7 +22,7 @@ jobs:
           key: ${{ runner.os }}-ubuntu-22.04-arm-normal-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Build
-        run: cargo build --release --locked --all-targets --verbose
+        run: cargo build --release --locked --all-targets
 
       - name: Test
         run: cargo test -- --nocapture
@@ -45,7 +45,7 @@ jobs:
           key: ${{ runner.os }}-macos-13-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Build
-        run: cargo build --release --locked --all-targets --verbose
+        run: cargo build --release --locked --all-targets
 
       - name: Test
         run: cargo test -- --nocapture
@@ -148,7 +148,7 @@ jobs:
           " > $GITHUB_ENV
 
       - name: Build with PKG_CONFIG_LIBDIR environment variable
-        run: cargo build --release --locked --all-targets --verbose
+        run: cargo build --release --locked --all-targets
         env:
           PKG_CONFIG_LIBDIR: /sysroot/usr/lib/aarch64-linux-gnu/pkgconfig
 
@@ -156,4 +156,4 @@ jobs:
         run: cargo test -- --nocapture
 
       - name: Build without PKG_CONFIG_LIBDIR environment variable
-        run: cargo build --release --locked --all-targets --verbose
+        run: cargo build --release --locked --all-targets
