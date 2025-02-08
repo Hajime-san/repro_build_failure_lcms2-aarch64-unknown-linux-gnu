@@ -24,7 +24,7 @@ jobs:
       - name: Build
         run: cargo build --release --locked --all-targets
 
-  build-on-ubuntu-22-x86:
+  build-on-macos-x86:
     runs-on: macos-13
     steps:
       - name: Checkout
@@ -39,7 +39,30 @@ jobs:
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
             target/
-          key: ${{ runner.os }}-macos-13-cargo-${{ hashFiles('**/Cargo.lock') }}
+          key: ${{ runner.os }}-macos-x86-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Build
+        run: cargo build --release --locked --all-targets
+
+      - name: Test
+        run: cargo test -- --nocapture
+
+  build-on-macos-arm64:
+    runs-on: macos-14
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-macos-arm64-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Build
         run: cargo build --release --locked --all-targets
