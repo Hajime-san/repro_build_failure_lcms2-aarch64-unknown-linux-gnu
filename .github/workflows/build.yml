@@ -24,6 +24,32 @@ jobs:
       - name: Build
         run: cargo build --release --locked --all-targets --verbose
 
+      - name: Test
+        run: cargo test -- --nocapture
+
+  build-on-ubuntu-22-x86:
+    runs-on: macos-13
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-macos-13-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Build
+        run: cargo build --release --locked --all-targets --verbose
+
+      - name: Test
+        run: cargo test -- --nocapture
+
   build-on-ubuntu-22-arm:
     runs-on: ubuntu-22.04-arm
     steps:
@@ -125,6 +151,9 @@ jobs:
         run: cargo build --release --locked --all-targets --verbose
         env:
           PKG_CONFIG_LIBDIR: /sysroot/usr/lib/aarch64-linux-gnu/pkgconfig
+
+      - name: Test
+        run: cargo test -- --nocapture
 
       - name: Build without PKG_CONFIG_LIBDIR environment variable
         run: cargo build --release --locked --all-targets --verbose

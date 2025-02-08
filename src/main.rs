@@ -84,3 +84,21 @@ fn main() {
   // Profile can be saved as ICC file
   let _ = custom_profile.icc();
 }
+
+#[cfg(all(target_os = "macos"))]
+#[test]
+fn show_lib_info() {
+  use pkg_config;
+
+  let lib = pkg_config::probe_library("lcms2").unwrap();
+  println!("{:#?}", lib);
+
+  let otool = std::process::Command::new("otool")
+    .arg("-L")
+    .arg("target/release/app")
+    .output()
+    .expect("Failed to execute otool");
+
+  let output = std::str::from_utf8(&otool.stdout).unwrap();
+  println!("{:#?}", output);
+}
