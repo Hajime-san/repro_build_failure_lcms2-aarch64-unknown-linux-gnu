@@ -8,4 +8,4 @@ build = "build.rs"
 lcms2 = "6.1.0"
 
 [patch.crates-io]
-lcms2 = { git = 'https://github.com/Hajime-san/rust-lcms2-sys', branch = 'patched' }
+lcms2-sys = { git = 'https://github.com/Hajime-san/rust-lcms2-sys', branch = 'patched' }
