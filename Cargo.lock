@@ -144,3 +144,8 @@ name = "unicode-ident"
 version = "1.0.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a210d160f08b701c8721ba1c726c11662f877ea6b7094007e1ca9a1041945034"
+
+[[patch.unused]]
+name = "rand"
+version = "0.7.3"
+source = "git+https://github.com/Kumassy/qiita-patched-rand?branch=patched#b7433fd97e1ab10d11d6e81b91a684ca18730d5f"
